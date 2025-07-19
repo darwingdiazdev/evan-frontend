@@ -13,7 +13,7 @@ function App() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
-          <span className="navbar-brand">Reportes</span>
+          <span className="navbar-brand">Invasión Evangelística</span>
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
