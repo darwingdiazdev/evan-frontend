@@ -44,7 +44,7 @@ export default function ReportForm({ onSuccess }) {
   return (
     <form className="container mt-4" onSubmit={handleSubmit}>
       <h4 className="mb-3">Reporte Diario</h4>
-      <p style={{ fontFamily: "'Merriweather', serif", fontSize: '1.8rem', lineHeight: '1.6' }}>
+      <p style={{ fontFamily: "'Merriweather', serif", fontSize: '1rem', lineHeight: '1.6' }}>
         "Por tanto, id, y haced discípulos a todas las naciones, bautizándolos en el nombre del Padre, y del Hijo, y del Espiritu Santo" 
         Mateo 28:19
       </p>
