@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 import { createReport } from './api';
 
 export default function ReportForm({ onSuccess }) {
@@ -24,7 +25,12 @@ export default function ReportForm({ onSuccess }) {
     e.preventDefault();
     try {
       await createReport(formData);
-      alert('Reporte enviado con éxito');
+       Swal.fire({
+        icon: 'success',
+        title: '¡Reporte enviado!',
+        text: 'El reporte fue registrado exitosamente.',
+        confirmButtonText: 'Aceptar',
+      });
       setFormData({
         region: '',
         iglesia: '',
@@ -37,14 +43,19 @@ export default function ReportForm({ onSuccess }) {
       });
       onSuccess();
     } catch (err) {
-      alert('Error al enviar el reporte');
+       Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'No se pudo enviar el reporte, intenta de nuevo.',
+        confirmButtonText: 'Aceptar',
+      });
     }
   };
 
   return (
     <form className="container mt-4" onSubmit={handleSubmit}>
       <h4 className="mb-3">Reporte Diario</h4>
-      <p style={{ fontFamily: "'Merriweather', serif", fontSize: '1rem', lineHeight: '1.6' }}>
+      <p style={{ fontFamily: "'Merriweather', serif", fontSize: '1rem', lineHeight: '1.6', fontWeight: 'bold' }}>
         "Por tanto, id, y haced discípulos a todas las naciones, bautizándolos en el nombre del Padre, y del Hijo, y del Espiritu Santo" 
         Mateo 28:19
       </p>

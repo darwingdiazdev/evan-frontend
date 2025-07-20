@@ -1,15 +1,22 @@
-import { useState,} from 'react';
+import { useState, useEffect } from 'react';
 import { getTotales } from './api';
 
 export default function Totales() {
-  const [zona, setZona] = useState('Zona 1');
+  const [zona, setZona] = useState('Todas');
   const [desde, setDesde] = useState('');
   const [hasta, setHasta] = useState('');
   const [totales, setTotales] = useState(null);
 
+  useEffect(() => {
+    const cargarTotales = async () => {
+      const data = await getTotales(); // sin filtros
+      setTotales(data);
+    };
+    cargarTotales();
+  }, []);
+
   const handleBuscar = async () => {
-    if (!desde || !hasta) return alert('Selecciona un rango de fechas');
-    const data = await getTotales(zona, desde, hasta);
+    const data = await getTotales(zona)
     setTotales(data);
   };
 
@@ -21,6 +28,7 @@ export default function Totales() {
         <div className="col-md-4">
           <label className="form-label">Zona</label>
           <select className="form-select" value={zona} onChange={(e) => setZona(e.target.value)}>
+            <option>Todas</option>
             <option>Zona 1</option>
             <option>Zona 2</option>
             <option>Zona 3</option>
@@ -44,12 +52,14 @@ export default function Totales() {
       {totales && (
         <div className="card shadow-sm">
           <div className="card-body">
-            <h5 className="card-title">Totales en {zona}</h5>
+            <h5 className="card-title">Total en {zona}</h5>
             <ul className="list-group list-group-flush">
               <li className="list-group-item">Milagros: <strong>{totales.milagros}</strong></li>
-              <li className="list-group-item">Salvaciones: <strong>{totales.salvaciones}</strong></li>
               <li className="list-group-item">Sanidades: <strong>{totales.sanidades}</strong></li>
-              <li className="list-group-item">Ofrendas: <strong>Bs. {totales.ofrendas.toFixed(2) ?? "0.00"}</strong></li>
+              <li className="list-group-item">Salvaciones: <strong>{totales.salvaciones}</strong></li>
+              <li className="list-group-item">
+                Ofrendas: <strong>Bs. {(totales.ofrendas ?? 0).toFixed(2)}</strong>
+              </li>
             </ul>
           </div>
         </div>

@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   const [refresh, setRefresh] = useState(false);
   const [view, setView] = useState('form'); // "form" o "list"
-  const [showTotales, setShowTotales] = useState(false);
 
   return (
     <div>
@@ -34,10 +33,10 @@ function App() {
               </li>
                <li className="nav-item">
                 <button
-                  className="nav-link btn btn-link text-white"
-                  onClick={() => setShowTotales(!showTotales)}
+                  className={`nav-link btn btn-link text-white ${view === 'totales' ? 'fw-bold' : ''}`}
+                  onClick={() => setView('totales')}
                 >
-                  {showTotales ? 'Ocultar Totales' : 'Ver Totales'}
+                  Ver Totales
                 </button>
               </li>
             </ul>
@@ -46,17 +45,9 @@ function App() {
       </nav>
 
       <div className="container mt-4">
-        {view === 'form' ? (
-          <ReportForm onSuccess={() => setRefresh(!refresh)} />
-        ) : (
-          <ReportList refresh={refresh} />
-        )}
-
-          {showTotales && (
-          <div className="mt-5">
-            <Totales />
-          </div>
-        )}
+         {view === 'form' && <ReportForm onSuccess={() => setRefresh(!refresh)} />}
+        {view === 'list' && <ReportList refresh={refresh} />}
+        {view === 'totales' && <Totales />}
       </div>
     </div>
   );
