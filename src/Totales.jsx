@@ -54,9 +54,11 @@ export default function Totales() {
           <div className="card-body">
             <h5 className="card-title">Total en {zona}</h5>
             <ul className="list-group list-group-flush">
-              <li className="list-group-item">Milagros: <strong>{totales.milagros}</strong></li>
+              <li className="list-group-item">Evangelizados: <strong>{totales.evangelizados}</strong></li>
               <li className="list-group-item">Sanidades: <strong>{totales.sanidades}</strong></li>
-              <li className="list-group-item">Salvaciones: <strong>{totales.salvaciones}</strong></li>
+              <li className="list-group-item">Convertidos: <strong>{totales.convertidos}</strong></li>
+              
+              <li className="list-group-item">Discipulados: <strong>{totales.discipulados}</strong></li>
               <li className="list-group-item">
                 Ofrendas: <strong>Bs. {(totales.ofrendas ?? 0).toFixed(2)}</strong>
               </li>

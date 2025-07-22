@@ -29,12 +29,12 @@ export default function ReportList({ refresh }) {
                 <th>Iglesia</th>
                 <th>Capitan</th>
                 <th>Actividad</th>
-                <th>Milagros</th>
+                <th>Evangelizados</th>
                 <th>Sanidades</th>
-                <th>Salvaciones</th>
+                <th>Convertidos</th>
+                <th>Discipulados</th>
                 <th>Ofrendas(bs.)</th>
                 <th>Fecha</th>
-
               </tr>
             </thead>
             <tbody >
@@ -45,12 +45,13 @@ export default function ReportList({ refresh }) {
                   <td>{r.iglesia}</td>
                   <td>{r.comentario}</td>
                   <td>{r.actividad}</td>
-                  <td>{r.milagros}</td>
+                  <td>{r.evangelizados}</td>
                   <td>{r.sanidades}</td>
-                  <td>{r.salvaciones}</td>
+                  <td>{r.convertidos}</td>
+                  <td>{r.discipulados}</td>
                   <td>{parseFloat(r.ofrendas).toFixed(2)}</td>
                   <td>{new Date(r.fecha).toLocaleDateString()}</td>
-
+                  
                 </tr>
               ))}
             </tbody>

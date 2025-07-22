@@ -7,9 +7,10 @@ export default function ReportForm({ onSuccess }) {
     region: '',
     iglesia: '',
     actividad: '',
-    milagros: 0,
+    evangelizados: 0,
     sanidades: 0,
-    salvaciones: 0,
+    convertidos: 0,
+    discipulados: 0,
     ofrendas: 0,
     comentario: '',
   });
@@ -37,7 +38,9 @@ export default function ReportForm({ onSuccess }) {
         actividad: '',
         milagros: 0,
         sanidades: 0,
-        salvaciones: 0,
+        convertidos: 0,
+        discipulados: 0,
+
         ofrendas: 0,
         comentario: '',
       });
@@ -113,18 +116,38 @@ export default function ReportForm({ onSuccess }) {
       </div>
 
       <div className="row">
-        <div className="col-md-3 mb-3">
-          <label className="form-label">Milagros</label>
+        <div className="col-md-2 mb-3">
+          <label className="form-label">Evangelizados</label>
           <input
-            name="milagros"
+            name="evangelizados"
             type="number"
             className="form-control"
-            value={formData.milagros}
+            value={formData.evangelizados}
             onChange={handleChange}
           />
         </div>
-         <div className="col-md-3 mb-3">
-          <label className="form-label">Sanidades</label>
+        <div className="col-md-2 mb-3">
+          <label className="form-label">Convertidos</label>
+          <input
+            name="convertidos"
+            type="number"
+            className="form-control"
+            value={formData.convertidos}
+            onChange={handleChange}
+          />
+        </div>
+         <div className="col-md-2 mb-3">
+          <label className="form-label">Discipulados</label>
+          <input
+            name="discipulados"
+            type="number"
+            className="form-control"
+            value={formData.discipulados}
+            onChange={handleChange}
+          />
+        </div>
+         <div className="col-md-2 mb-3">
+          <label className="form-label">Sanidades y Milagros</label>
           <input
             name="sanidades"
             type="number"
@@ -133,17 +156,8 @@ export default function ReportForm({ onSuccess }) {
             onChange={handleChange}
           />
         </div>
-        <div className="col-md-3 mb-3">
-          <label className="form-label">Salvaciones</label>
-          <input
-            name="salvaciones"
-            type="number"
-            className="form-control"
-            value={formData.salvaciones}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="col-md-3 mb-3">
+        
+        <div className="col-md-2 mb-3">
           <label className="form-label">Ofrendas (bs.)</label>
           <input
             name="ofrendas"
