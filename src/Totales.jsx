@@ -15,10 +15,10 @@ export default function Totales() {
     cargarTotales();
   }, []);
 
-  const handleBuscar = async () => {
-    const data = await getTotales(zona)
-    setTotales(data);
-  };
+ const handleBuscar = async () => {
+  const data = await getTotales(zona, desde, hasta);
+  setTotales(data);
+};
 
   return (
     <div className="container mt-4">

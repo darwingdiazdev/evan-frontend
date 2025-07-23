@@ -17,17 +17,22 @@ export async function getReports() {
   return response.json();
 }
 
-export const getTotales = async (zona, desde, hasta) => {
-  const response = await fetch(`${API_URL}/api/reports/totales?zona=${zona}&desde=${desde}&hasta=${hasta}`);
+export const getTotales = async (zona = 'Todas', desde = '', hasta = '') => {
+  const params = new URLSearchParams();
 
-  // Si la respuesta no es JSON válida, esto previene el error
-  const text = await response.text();
-  if (!text) return { milagros: 0, salvaciones: 0, sanidades: 0, ofrendas: 0 };
+  if (zona && zona !== 'Todas') params.append('zona', zona);
+  if (desde) params.append('desde', desde);
+  if (hasta) params.append('hasta', hasta);
 
   try {
+    const response = await fetch(`${API_URL}/api/reports/totales?${params.toString()}`);
+    const text = await response.text();
+
+    if (!text) return { milagros: 0, salvaciones: 0, sanidades: 0, ofrendas: 0 };
+
     return JSON.parse(text);
   } catch (err) {
-    console.error('Error al parsear JSON:', err);
+    console.error('Error al obtener totales:', err);
     return { milagros: 0, salvaciones: 0, sanidades: 0, ofrendas: 0 };
   }
 };

@@ -26,7 +26,7 @@ export default function ReportList({ refresh }) {
               <tr>
                 <th>#</th>
                 <th>Zona</th>
-                <th>Iglesia</th>
+                <th>Pastor</th>
                 <th>Capitan</th>
                 <th>Actividad</th>
                 <th>Evangelizados</th>

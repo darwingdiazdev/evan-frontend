@@ -2,6 +2,93 @@ import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import { createReport } from './api';
 
+
+const pastorsByZone = {
+  'Zona 1': [
+    'Baudilio Parra ',
+    'Bernardo Contreras ',
+    'Daritza de Colmenares ',
+    'Dixon Alcantara ',
+    'Edilia de Méndez ',
+    'Edilio Quintero',
+    'Gerardo Vera ',
+    'Gisela Barrios ',
+    'Hilario Rivas',
+    'Jesús Márquez ',
+    'Junior Colmenares ',
+    'Leonardo Nava ',
+    'Liliana Guillén ',
+    'Lizeth de Araque ',
+    'Luis Rivero',
+    'Manuel Monsalve ',
+    'Ygor López ',
+    'Yolanda de Martínez ',
+  ],
+  'Zona 2': [
+    'Ali Dávila',
+    'Argenis Silva',
+    'Asleyda Silva',
+    'Belkis Lobo',
+    'Ever Oliveros',
+    'Giovanny Chourio ',
+    'Giovanny Chourio ',
+    'Héctor Rivero',
+    'Jesús Contreras',
+    'Leonardo Mesino',
+    'Olinto Machado',
+    'Sandra de Flores',
+  ],
+  'Zona 3': [
+    'Boanerges',
+    'Cristian Villamizar',
+    'Deveis Chourio',
+    'Glenis San Martin',
+    'Heidy Soto',
+    'Hilba Castro',
+    'Jonas Mendoza',
+    'Leonardo Chourio',
+    'Leyva Meza',
+    'María Luisa Acevedo',
+    'Martha Quiñónez',
+    'Teresa López',
+    'Yimy Puentes',
+    'Yofraces Rondón',
+    'Ysmelda Vargas',
+  ],
+  'Zona 4': [
+    'Alexander Cabrera ',
+    'Alexander Guerra y Johan Aldana ',
+    'Carlos López ',
+    'Daniel Rangel ',
+    'Eivar Linares ',
+    'Wiilbrainer Linares y Modesto Cárdenas ',
+    'Ennis Pirela ',
+    'Isaías Rico ',
+    'Javier Luque ',
+    'José Pirona ',
+    'José Vázquez ',
+    'Juan Briceño ',
+    'Orlando Uviedo - Fundacion  ',
+    'Orlando Uviedo - Fortalecimiento ',
+    'Rigoberto Díaz y Danilo ',
+    'Roger Moreno ',
+    'Víctor Castellanos',
+  ],
+  'Zona 5': [
+    'Alexander Mateus ',
+    'Álvaro Silva',
+    'David Uribe ',
+    'Enmanuel Terán ',
+    'Enmanuel Vargas ',
+    'Gonzalo Pérez ',
+    'Jhon Herrera ',
+    'José Marquina ',
+    'Nubia Gamboa ',
+    'Pedro Montiel ',
+    'Ronald Buitrago ',
+  ],
+};
+
 export default function ReportForm({ onSuccess }) {
   const [formData, setFormData] = useState({
     region: '',
@@ -82,15 +169,23 @@ export default function ReportForm({ onSuccess }) {
       </div>
 
       <div className="mb-3">
-        <label className="form-label">Iglesia</label>
-        <input
+        <label htmlFor="pastor" className="form-label">Pastor</label>
+        <select
+          id="pastor"
           name="iglesia"
-          className="form-control"
-          placeholder="Iglesia"
           value={formData.iglesia}
           onChange={handleChange}
+          className="form-select"
           required
-        />
+          disabled={!formData.region}
+        >
+          <option value="">Seleccione un pastor</option>
+          {pastorsByZone[formData.region]?.map((pastor, index) => (
+            <option key={index} value={pastor}>
+              {pastor}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="mb-3">
         <label htmlFor="comentario" className="form-label">Capitan</label>
