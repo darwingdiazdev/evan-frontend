@@ -52,7 +52,7 @@ export default function Totales() {
       {totales && (
         <div className="card shadow-sm">
           <div className="card-body">
-            <h5 className="card-title">Total en {zona}</h5>
+            <h5 className="card-title">Total en {zona} con fechas {desde} - {hasta}</h5>
             <ul className="list-group list-group-flush">
               <li className="list-group-item">Evangelizados: <strong>{totales.evangelizados}</strong></li>
               <li className="list-group-item">Sanidades: <strong>{totales.sanidades}</strong></li>

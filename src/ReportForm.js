@@ -123,11 +123,10 @@ export default function ReportForm({ onSuccess }) {
         region: '',
         iglesia: '',
         actividad: '',
-        milagros: 0,
+        evangelizados: 0,
         sanidades: 0,
         convertidos: 0,
         discipulados: 0,
-
         ofrendas: 0,
         comentario: '',
       });
@@ -146,8 +145,8 @@ export default function ReportForm({ onSuccess }) {
     <form className="container mt-4" onSubmit={handleSubmit}>
       <h4 className="mb-3">Reporte Diario</h4>
       <p style={{ fontFamily: "'Merriweather', serif", fontSize: '1rem', lineHeight: '1.6', fontWeight: 'bold' }}>
-        "Por tanto, id, y haced discípulos a todas las naciones, bautizándolos en el nombre del Padre, y del Hijo, y del Espiritu Santo" 
-        Mateo 28:19
+        "Mira que te mando que te esfuerces y seas valiente; no temas ni desmayes, porque Jehová tu Dios estará contigo en dondequiera que vayas."
+        Josue 1:9
       </p>
       <div className="mb-3">
         <label htmlFor="region" className="form-label">Zona</label>
