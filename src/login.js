@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './auth';
 import { loginUser } from './api';  // <-- Importar la función
+import Swal from 'sweetalert2';
 
 function Login() {
   const [form, setForm] = useState({ username: '', password: '' });
@@ -15,14 +16,19 @@ function Login() {
     e.preventDefault();
 
     try {
-      const data = await loginUser(form); // <-- Usamos la función importada
+      const data = await loginUser(form);
 
-      // Guardamos el token o datos del usuario que venga en `data`
       auth.login(data.user);
       navigate('/');
     } catch (err) {
-      alert(err.message);
+     
       console.error(err);
+       Swal.fire({
+      icon: 'error',
+      title: 'Error de inicio de sesión',
+      text: err.message || 'Ocurrió un error inesperado. Intenta nuevamente.',
+      confirmButtonColor: '#d33'
+    });
     }
   };
 
