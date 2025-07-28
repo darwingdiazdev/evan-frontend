@@ -9,6 +9,7 @@ import Register from './register';
 import Navbar from './navbar';
 import { AuthProvider, useAuth } from './auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ReportDetail from './ReportDetail';
 
 // Ruta protegida
 const PrivateRoute = ({ children }) => {
@@ -39,6 +40,7 @@ function App() {
                 </PrivateRoute>
               }
             />
+             <Route path="/reports/:id" element={<ReportDetail />} />
             <Route
               path="/totales"
               element={

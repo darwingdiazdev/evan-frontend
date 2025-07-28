@@ -6,7 +6,7 @@ function Register() {
   const [form, setForm] = useState({
     username: '',
     password: '',
-    zona: '1',
+    zona: 'zona 1',
     role: 'capitan',
   });
   const navigate = useNavigate();
@@ -58,11 +58,11 @@ function Register() {
         className="form-select mb-2"
         required
       >
-        <option value="1">Zona 1</option>
-        <option value="2">Zona 2</option>
-        <option value="3">Zona 3</option>
-        <option value="4">Zona 4</option>
-        <option value="5">Zona 5</option>
+        <option value="Zona 1">Zona 1</option>
+        <option value="Zona 2">Zona 2</option>
+        <option value="Zona 3">Zona 3</option>
+        <option value="Zona 4">Zona 4</option>
+        <option value="Zona 5">Zona 5</option>
       </select>
 
       <select

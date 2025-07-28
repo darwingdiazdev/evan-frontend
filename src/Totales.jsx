@@ -57,7 +57,10 @@ export default function Totales() {
               <li className="list-group-item">Evangelizados: <strong>{totales.evangelizados}</strong></li>
               <li className="list-group-item">Sanidades: <strong>{totales.sanidades}</strong></li>
               <li className="list-group-item">Convertidos: <strong>{totales.convertidos}</strong></li>
-              
+              <li className="list-group-item">Reconciliados: <strong>{totales.reconciliados}</strong></li>
+              <li className="list-group-item">Niños evangelizados: <strong>{totales.kids}</strong></li>
+              <li className="list-group-item">Casas visitadas: <strong>{totales.house}</strong></li>
+              <li className="list-group-item">Tratados entregados: <strong>{totales.trate}</strong></li>
               <li className="list-group-item">Discipulados: <strong>{totales.discipulados}</strong></li>
               <li className="list-group-item">
                 Ofrendas: <strong>Bs. {(totales.ofrendas ?? 0).toFixed(2)}</strong>

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Swal from 'sweetalert2';
 import { createReport } from './api';
 
 
 const pastorsByZone = {
-  'Zona 1': [
+  'zona 1': [
     'Baudilio Parra ',
     'Bernardo Contreras ',
     'Daritza de Colmenares ',
@@ -24,7 +24,7 @@ const pastorsByZone = {
     'Ygor López ',
     'Yolanda de Martínez ',
   ],
-  'Zona 2': [
+  'zona 2': [
     'Ali Dávila',
     'Argenis Silva',
     'Asleyda Silva',
@@ -38,7 +38,7 @@ const pastorsByZone = {
     'Olinto Machado',
     'Sandra de Flores',
   ],
-  'Zona 3': [
+  'zona 3': [
     'Boanerges',
     'Cristian Villamizar',
     'Deveis Chourio',
@@ -55,7 +55,7 @@ const pastorsByZone = {
     'Yofraces Rondón',
     'Ysmelda Vargas',
   ],
-  'Zona 4': [
+  'zona 4': [
     'Alexander Cabrera ',
     'Alexander Guerra y Johan Aldana ',
     'Carlos López ',
@@ -74,7 +74,7 @@ const pastorsByZone = {
     'Roger Moreno ',
     'Víctor Castellanos',
   ],
-  'Zona 5': [
+  'zona 5': [
     'Alexander Mateus ',
     'Álvaro Silva',
     'David Uribe ',
@@ -96,6 +96,10 @@ export default function ReportForm({ onSuccess }) {
     actividad: '',
     evangelizados: 0,
     sanidades: 0,
+    reconciliados: 0,
+    kids: 0,
+    house: 0,
+    trate: 0,
     convertidos: 0,
     discipulados: 0,
     ofrendas: 0,
@@ -112,7 +116,7 @@ export default function ReportForm({ onSuccess }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await createReport(formData);
+      const res =  await createReport(formData);
        Swal.fire({
         icon: 'success',
         title: '¡Reporte enviado!',
@@ -125,12 +129,16 @@ export default function ReportForm({ onSuccess }) {
         actividad: '',
         evangelizados: 0,
         sanidades: 0,
+        reconciliados: 0,
+        kids: 0,
+        house: 0,
+        trate: 0,
         convertidos: 0,
         discipulados: 0,
         ofrendas: 0,
         comentario: '',
       });
-      onSuccess();
+      onSuccess?.();
     } catch (err) {
        Swal.fire({
         icon: 'error',
@@ -159,11 +167,11 @@ export default function ReportForm({ onSuccess }) {
           required
         >
           <option value="">Seleccione una zona</option>
-          <option value="Zona 1">Zona 1</option>
-          <option value="Zona 2">Zona 2</option>
-          <option value="Zona 3">Zona 3</option>
-          <option value="Zona 4">Zona 4</option>
-          <option value="Zona 5">Zona 5</option>
+          <option value="zona 1">Zona 1</option>
+          <option value="zona 2">Zona 2</option>
+          <option value="zona 3">Zona 3</option>
+          <option value="zona 4">Zona 4</option>
+          <option value="zona 5">Zona 5</option>
         </select>
       </div>
 
@@ -210,7 +218,7 @@ export default function ReportForm({ onSuccess }) {
       </div>
 
       <div className="row">
-        <div className="col-md-2 mb-3">
+        <div className="col-md-4 mb-3">
           <label className="form-label">Evangelizados</label>
           <input
             name="evangelizados"
@@ -220,7 +228,7 @@ export default function ReportForm({ onSuccess }) {
             onChange={handleChange}
           />
         </div>
-        <div className="col-md-2 mb-3">
+        <div className="col-md-4 mb-3">
           <label className="form-label">Convertidos</label>
           <input
             name="convertidos"
@@ -230,7 +238,17 @@ export default function ReportForm({ onSuccess }) {
             onChange={handleChange}
           />
         </div>
-         <div className="col-md-2 mb-3">
+        <div className="col-md-4 mb-3">
+          <label className="form-label">Reconciliados</label>
+          <input
+            name="reconciliados"
+            type="number"
+            className="form-control"
+            value={formData.reconciliados}
+            onChange={handleChange}
+          />
+        </div>
+         <div className="col-md-4 mb-3">
           <label className="form-label">Discipulados</label>
           <input
             name="discipulados"
@@ -240,7 +258,38 @@ export default function ReportForm({ onSuccess }) {
             onChange={handleChange}
           />
         </div>
-         <div className="col-md-2 mb-3">
+          <div className="col-md-4 mb-3">
+          <label className="form-label">Niños evangelizados</label>
+          <input
+            name="kids"
+            type="number"
+            className="form-control"
+            value={formData.kids}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="col-md-4 mb-3">
+          <label className="form-label">Casas visitadas</label>
+          <input
+            name="house"
+            type="number"
+            className="form-control"
+            value={formData.house}
+            onChange={handleChange}
+          />
+        </div>
+         <div className="col-md-4 mb-3">
+          <label className="form-label">Tratados entregados</label>
+          <input
+            name="trate"
+            type="number"
+            className="form-control"
+            value={formData.trate}
+            onChange={handleChange}
+          />
+        </div>
+        
+         <div className="col-md-4 mb-3">
           <label className="form-label">Sanidades y Milagros</label>
           <input
             name="sanidades"
@@ -251,7 +300,7 @@ export default function ReportForm({ onSuccess }) {
           />
         </div>
         
-        <div className="col-md-2 mb-3">
+        <div className="col-md-4 mb-3">
           <label className="form-label">Ofrendas (bs.)</label>
           <input
             name="ofrendas"
