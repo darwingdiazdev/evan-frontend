@@ -6,12 +6,23 @@ import { useAuth } from './auth';
 
 
 export default function ReportList({ refresh }) {
-
-  const { user } = useAuth();
-  console.log('user', user);
   
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
   const [reports, setReports] = useState([]);
-      const navigate = useNavigate();
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentReports = reports.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(reports.length / itemsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+  setCurrentPage(pageNumber);
+};
+
 
   useEffect(() => {
     getReports()
@@ -92,9 +103,9 @@ export default function ReportList({ refresh }) {
               </tr>
             </thead>
             <tbody >
-              {reports.map((r, idx) => (
+              {currentReports.map((r, idx) => (
                 <tr key={r._id}>
-                  <td>{idx + 1}</td>
+                  <td>{indexOfFirstItem + idx + 1}</td>
                   <td>{r.region}</td>
                   <td>{r.iglesia}</td>
                   <td>{r.comentario}</td>
@@ -130,6 +141,23 @@ export default function ReportList({ refresh }) {
               ))}
             </tbody>
           </table>
+          <nav className="mt-3">
+            <ul className="pagination justify-content-center">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+                <li
+                  key={num}
+                  className={`page-item ${num === currentPage ? 'active' : ''}`}
+                >
+                  <button
+                    className="page-link"
+                    onClick={() => handlePageChange(num)}
+                  >
+                    {num}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       ) : (
         <div className="alert alert-info">No hay reportes disponibles.</div>
