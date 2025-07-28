@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getReportById, updateReportNumbers } from './api';
 import Swal from 'sweetalert2';
 
 export default function ReportDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [report, setReport] = useState(null);
   const [formData, setFormData] = useState({});
   const [editing, setEditing] = useState(false);
@@ -49,6 +50,7 @@ export default function ReportDetail() {
       text: 'Los campos numéricos se actualizaron correctamente',
       confirmButtonColor: '#3085d6',
     });
+    navigate('/reportes');
   } catch (err) {
     console.error(err);
     Swal.fire({
