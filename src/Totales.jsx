@@ -29,11 +29,11 @@ export default function Totales() {
           <label className="form-label">Zona</label>
           <select className="form-select" value={zona} onChange={(e) => setZona(e.target.value)}>
             <option>Todas</option>
-            <option>Zona 1</option>
-            <option>Zona 2</option>
-            <option>Zona 3</option>
-            <option>Zona 4</option>
-            <option>Zona 5</option>
+            <option>zona 1</option>
+            <option>zona 2</option>
+            <option>zona 3</option>
+            <option>zona 4</option>
+            <option>zona 5</option>
           </select>
         </div>
         <div className="col-md-3">
@@ -52,7 +52,10 @@ export default function Totales() {
       {totales && (
         <div className="card shadow-sm">
           <div className="card-body">
-            <h5 className="card-title">Total en {zona} con fechas {desde} - {hasta}</h5>
+            <h5 className="card-title">Total en {zona} </h5>
+            {
+              desde || hasta ?
+            (<p>Fechas {desde} {hasta}</p>): ''}
             <ul className="list-group list-group-flush">
               <li className="list-group-item">Evangelizados: <strong>{totales.evangelizados}</strong></li>
               <li className="list-group-item">Sanidades: <strong>{totales.sanidades}</strong></li>
