@@ -1,5 +1,6 @@
 // src/api.js
-const API_URL = 'http://localhost:8000'; 
+// const API_URL = 'http://localhost:8000'; 
+const API_URL ='18.191.100.0'
 
 export async function createReport(data) {
   const response = await fetch(`${API_URL}/api/reports`, {
