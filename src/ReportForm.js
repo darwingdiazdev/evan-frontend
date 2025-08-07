@@ -93,7 +93,7 @@ export default function ReportForm({ onSuccess }) {
   const [formData, setFormData] = useState({
     region: '',
     iglesia: '',
-    actividad: '',
+    actividad: 'Evangelismo',
     evangelizados: 0,
     sanidades: 0,
     reconciliados: 0,
@@ -126,7 +126,7 @@ export default function ReportForm({ onSuccess }) {
       setFormData({
         region: '',
         iglesia: '',
-        actividad: '',
+        actividad: 'Evangelismo',
         evangelizados: 0,
         sanidades: 0,
         reconciliados: 0,
@@ -210,9 +210,10 @@ export default function ReportForm({ onSuccess }) {
         <input
           name="actividad"
           className="form-control"
-          placeholder="Actividad"
+          placeholder="Evangelismo"
           value={formData.actividad}
           onChange={handleChange}
+          disabled
           required
         />
       </div>

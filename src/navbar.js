@@ -5,7 +5,6 @@ import { useAuth } from './auth';
 function Navbar() {
   const { isAuthenticated, logout, user } = useAuth();
   const navigate = useNavigate();
-console.log('user', user);
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const toggleNavbar = () => setIsCollapsed(!isCollapsed);

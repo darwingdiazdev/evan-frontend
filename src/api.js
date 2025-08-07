@@ -103,7 +103,6 @@ export async function loginUser(credentials) {
 
 // --- Register
 export async function registerUser(credentials) {
-  console.log('registerUser', credentials);
   const res = await fetch(`${API_URL}/api/users/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
