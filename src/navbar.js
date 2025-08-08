@@ -51,7 +51,7 @@ function Navbar() {
           ) : (
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item"><Link className="nav-link" to="/login" onClick={() => setIsCollapsed(true)}>Login</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/register" onClick={() => setIsCollapsed(true)}>Registro</Link></li>
+              {/* <li className="nav-item"><Link className="nav-link" to="/register" onClick={() => setIsCollapsed(true)}>Registro</Link></li> */}
             </ul>
           )}
         </div>
