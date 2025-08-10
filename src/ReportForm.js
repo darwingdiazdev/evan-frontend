@@ -105,6 +105,7 @@ export default function ReportForm({ onSuccess }) {
     ofrendas: 0,
     comentario: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -115,6 +116,7 @@ export default function ReportForm({ onSuccess }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
       const res =  await createReport(formData);
        Swal.fire({
@@ -146,6 +148,8 @@ export default function ReportForm({ onSuccess }) {
         text: 'No se pudo enviar el reporte, intenta de nuevo.',
         confirmButtonText: 'Aceptar',
       });
+    }finally {
+      setIsSubmitting(false); 
     }
   };
 
@@ -316,8 +320,8 @@ export default function ReportForm({ onSuccess }) {
       </div>
       
 
-      <button type="submit" className="btn btn-primary">
-        Enviar Reporte
+      <button type="submit" className="btn btn-primary"  disabled={isSubmitting} >
+        {isSubmitting ? 'Enviando...' : 'Enviar Reporte'}
       </button>
     </form>
   );
