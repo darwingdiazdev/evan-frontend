@@ -19,9 +19,33 @@ export default function ReportList({ refresh }) {
 
   const totalPages = Math.ceil(reports.length / itemsPerPage);
 
+ 
+
+// Función para generar el rango de páginas visibles
+  const getPageRange = () => {
+    const visiblePages = 6;
+    let startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + visiblePages - 1);
+
+    if (endPage - startPage + 1 < visiblePages) {
+      startPage = Math.max(1, endPage - visiblePages + 1);
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+  };
+
   const handlePageChange = (pageNumber) => {
-  setCurrentPage(pageNumber);
-};
+    setCurrentPage(pageNumber);
+  };
+
+  const goToPreviousPage = () => {
+    setCurrentPage((prev) => Math.max(1, prev - 1));
+  };
+
+  const goToNextPage = () => {
+    setCurrentPage((prev) => Math.min(totalPages, prev + 1));
+  };
+
 
 
   useEffect(() => {
@@ -141,9 +165,40 @@ export default function ReportList({ refresh }) {
               ))}
             </tbody>
           </table>
-          <nav className="mt-3">
-            <ul className="pagination justify-content-center">
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+          <nav className="mt-3 d-flex justify-content-center">
+            <ul className="pagination">
+              {/* Flecha izquierda */}
+              <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                <button 
+                  className="page-link" 
+                  onClick={goToPreviousPage}
+                  disabled={currentPage === 1}
+                >
+                  <i className="bi bi-chevron-left"></i>
+                </button>
+              </li>
+              
+              {/* Mostrar primera página si no está en el rango visible */}
+              {getPageRange()[0] > 1 && (
+                <>
+                  <li className="page-item">
+                    <button 
+                      className="page-link" 
+                      onClick={() => handlePageChange(1)}
+                    >
+                      1
+                    </button>
+                  </li>
+                  {getPageRange()[0] > 2 && (
+                    <li className="page-item disabled">
+                      <span className="page-link">...</span>
+                    </li>
+                  )}
+                </>
+              )}
+              
+              {/* Páginas visibles */}
+              {getPageRange().map((num) => (
                 <li
                   key={num}
                   className={`page-item ${num === currentPage ? 'active' : ''}`}
@@ -156,6 +211,36 @@ export default function ReportList({ refresh }) {
                   </button>
                 </li>
               ))}
+              
+              {/* Mostrar última página si no está en el rango visible */}
+              {getPageRange()[getPageRange().length - 1] < totalPages && (
+                <>
+                  {getPageRange()[getPageRange().length - 1] < totalPages - 1 && (
+                    <li className="page-item disabled">
+                      <span className="page-link">...</span>
+                    </li>
+                  )}
+                  <li className="page-item">
+                    <button 
+                      className="page-link" 
+                      onClick={() => handlePageChange(totalPages)}
+                    >
+                      {totalPages}
+                    </button>
+                  </li>
+                </>
+              )}
+              
+              {/* Flecha derecha */}
+              <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                <button 
+                  className="page-link" 
+                  onClick={goToNextPage}
+                  disabled={currentPage === totalPages}
+                >
+                  <i className="bi bi-chevron-right"></i>
+                </button>
+              </li>
             </ul>
           </nav>
         </div>
